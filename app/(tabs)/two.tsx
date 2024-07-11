@@ -1,14 +1,18 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from "react-native";
+import { Text, View } from "@/components/Themed";
+import { LinearGradient } from "expo-linear-gradient";
+import { bgGradient } from "@/constants/Colors";
+import { Button } from "react-native-paper";
+import { router } from "expo-router";
 
-import EditScreenInfo from '@/components/EditScreenInfo';
-import { Text, View } from '@/components/Themed';
+const { height: HGHT } = Dimensions.get("screen");
 
 export default function TabTwoScreen() {
   return (
     <View style={styles.container}>
+      <LinearGradient style={styles.background} colors={bgGradient} />
       <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/two.tsx" />
+      <Button onPress={() => router.push("/motivation")}>Motivation</Button>
     </View>
   );
 }
@@ -16,16 +20,32 @@ export default function TabTwoScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    color: "white",
+    alignItems: "center",
+    backgroundColor: "transparent",
+    justifyContent: "center",
   },
   title: {
     fontSize: 20,
-    fontWeight: 'bold',
+    color: "white",
+    fontWeight: "bold",
   },
   separator: {
     marginVertical: 30,
+
     height: 1,
-    width: '80%',
+    width: "80%",
+  },
+  background: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+    height: HGHT,
+  },
+  modal: {
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 25,
   },
 });
